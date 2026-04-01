@@ -1,26 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Electric Power and Machines Quiz</title>
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f0fdf4; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Helvetica,
+          Arial,
+          sans-serif;
+        background: #f0fdf4;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div id="root"></div>
 
     <script type="text/babel">
-        // --- RAW PDF TEXT ---
-        // Preserving literal text to ensure exact questions and choices.
-        const rawPdfText = String.raw`
+      // --- RAW PDF TEXT ---
+      // Preserving literal text to ensure exact questions and choices.
+      const rawPdfText = String.raw`
 --- PAGE 1 ---
 جامعة المنصورة
 MANSOURA UNIVERSITY
@@ -1455,296 +1477,649 @@ c) Brushes and commutator
 d) Armature core
 `;
 
-        // Mathematical answer key generated dynamically based on engineering rules. 
-        // Maps question sequence directly.
-        const providedAnswers = [
-            'c', 'a', 'd', 'd', 'b', 'b', 'c', 'c', 'a', 'b', // 1-10
-            'a', 'b', 'c', 'd', 'c', 'a', 'a', 'b', 'a', 'c', // 11-20
-            'd', 'b', 'c', 'a', 'c', 'a', 'b', 'b', 'c', 'c', // 21-30
-            'd', 'a', 'd', 'c', 'd', 'd', 'c', 'b', 'b', 'a', // 31-40
-            'c', 'a', 'c', 'd', 'b', 'd', 'b', 'b', 'c', 'a', // 41-50
-            'c', 'a', 'a', 'a', 'b', 'a', 'b', 'c', 'b', 'c', // 51-60
-            'a', 'b', 'd', 'a', 'b', 'c', 'd', 'a', 'a', 'b', // 61-70
-            'a', 'c', 'c', 'd', 'd', 'c', 'b', 'c', 'b', 'b', // 71-80
-            'b', 'c', 'c', 'b', 'c', 'b', 'd', 'b', 'c', 'b', // 81-90 (Includes reset 77 numbering)
-            'c', 'c', 'd', 'a', 'b', 'b', 'a', 'b', 'c', 'c', // 91-100
-            'd', 'd', 'b', 'a', 'b', 'c', 'b', 'b', 'b', 'c', // 101-110
-            'd', 'b', 'a', 'c', 'b', 'b', 'b', 'c', 'c', 'b', // 111-120
-            'd', 'c', 'a', 'c', 'a', 'c', 'b', 'b', 'd', 'b', // 121-130
-            'a', 'b', 'a', 'c', 'a', 'b', 'a', 'a', 'c', 'c', // 131-140
-            'b', 'b', 'a', 'a', 'c', 'c', 'a', 'b', 'a', 'b', // 141-150
-            'b', 'b', 'a', 'c', 'b', 'b', 'c', 'c', 'a', 'c', // 151-160
-            'b', 'd', 'b', 'c', 'b', 'a', 'c', 'b', 'c', 'c', // 161-170
-            'a', 'b', 'a', 'd', 'a', 'c', 'b', 'c', 'a', 'a', // 171-180
-            'b', 'c', 'b', 'a', 'b', 'c', 'c', 'b', 'd', 'b', // 181-190
-            'b', 'b', 'c', 'c', 'a', 'c', 'c', 'c'            // 191-198
-        ];
+      // Mathematical answer key generated dynamically based on engineering rules.
+      // Maps question sequence directly.
+      const providedAnswers = [
+        "c",
+        "a",
+        "d",
+        "d",
+        "b",
+        "b",
+        "c",
+        "c",
+        "a",
+        "b", // 1-10
+        "a",
+        "b",
+        "c",
+        "d",
+        "c",
+        "a",
+        "a",
+        "b",
+        "a",
+        "c", // 11-20
+        "d",
+        "b",
+        "c",
+        "a",
+        "c",
+        "a",
+        "b",
+        "b",
+        "c",
+        "c", // 21-30
+        "d",
+        "a",
+        "d",
+        "c",
+        "d",
+        "d",
+        "c",
+        "b",
+        "b",
+        "a", // 31-40
+        "c",
+        "a",
+        "c",
+        "d",
+        "b",
+        "d",
+        "b",
+        "b",
+        "c",
+        "a", // 41-50
+        "c",
+        "a",
+        "a",
+        "a",
+        "b",
+        "a",
+        "b",
+        "c",
+        "b",
+        "c", // 51-60
+        "a",
+        "b",
+        "d",
+        "a",
+        "b",
+        "c",
+        "d",
+        "a",
+        "a",
+        "b", // 61-70
+        "a",
+        "c",
+        "c",
+        "d",
+        "d",
+        "c",
+        "b",
+        "c",
+        "b",
+        "b", // 71-80
+        "b",
+        "c",
+        "c",
+        "b",
+        "c",
+        "b",
+        "d",
+        "b",
+        "c",
+        "b", // 81-90 (Includes reset 77 numbering)
+        "c",
+        "c",
+        "d",
+        "a",
+        "b",
+        "b",
+        "a",
+        "b",
+        "c",
+        "c", // 91-100
+        "d",
+        "d",
+        "b",
+        "a",
+        "b",
+        "c",
+        "b",
+        "b",
+        "b",
+        "c", // 101-110
+        "d",
+        "b",
+        "a",
+        "c",
+        "b",
+        "b",
+        "b",
+        "c",
+        "c",
+        "b", // 111-120
+        "d",
+        "c",
+        "a",
+        "c",
+        "a",
+        "c",
+        "b",
+        "b",
+        "d",
+        "b", // 121-130
+        "a",
+        "b",
+        "a",
+        "c",
+        "a",
+        "b",
+        "a",
+        "a",
+        "c",
+        "c", // 131-140
+        "b",
+        "b",
+        "a",
+        "a",
+        "c",
+        "c",
+        "a",
+        "b",
+        "a",
+        "b", // 141-150
+        "b",
+        "b",
+        "a",
+        "c",
+        "b",
+        "b",
+        "c",
+        "c",
+        "a",
+        "c", // 151-160
+        "b",
+        "d",
+        "b",
+        "c",
+        "b",
+        "a",
+        "c",
+        "b",
+        "c",
+        "c", // 161-170
+        "a",
+        "b",
+        "a",
+        "d",
+        "a",
+        "c",
+        "b",
+        "c",
+        "a",
+        "a", // 171-180
+        "b",
+        "c",
+        "b",
+        "a",
+        "b",
+        "c",
+        "c",
+        "b",
+        "d",
+        "b", // 181-190
+        "b",
+        "b",
+        "c",
+        "c",
+        "a",
+        "c",
+        "c",
+        "c", // 191-198
+      ];
 
-        // Format LaTeX to simple HTML
-        const cleanMath = (str) => {
-            if (!str) return '';
-            return str
-                .replace(/\$?/g, '') 
-                .replace(/\\circ/g, '°')
-                .replace(/\^\{\\circ\}/g, '°')
-                .replace(/\\sqrt\{\}?3/g, '√3')
-                .replace(/\\sqrt3/g, '√3')
-                .replace(/cos~\\phi/g, 'cos φ')
-                .replace(/sino/g, 'sin φ')
-                .replace(/sind/g, 'sin φ')
-                .replace(/V_\{ph\}/g, 'V<sub>ph</sub>')
-                .replace(/V_\{L\}/g, 'V<sub>L</sub>')
-                .replace(/I_\{ph\}/g, 'I<sub>ph</sub>')
-                .replace(/I_\{L\}/g, 'I<sub>L</sub>')
-                .replace(/\\phi/g, 'φ')
-                .replace(/\\pi/g, 'π')
-                .replace(/N_\{1\}/g, 'N<sub>1</sub>')
-                .replace(/N_\{2\}/g, 'N<sub>2</sub>')
-                .replace(/V_\{A\}/g, 'V<sub>A</sub>')
-                .replace(/V_\{B\}/g, 'V<sub>B</sub>')
-                .replace(/V_\{c\}/g, 'V<sub>C</sub>')
-                .replace(/I_\{o\}/g, 'I<sub>o</sub>')
-                .replace(/_\{a\}/g, '<sub>a</sub>')
-                .replace(/_\{f\}/g, '<sub>f</sub>');
-        };
+      // Format LaTeX to simple HTML
+      const cleanMath = (str) => {
+        if (!str) return "";
+        return str
+          .replace(/\$?/g, "")
+          .replace(/\\circ/g, "°")
+          .replace(/\^\{\\circ\}/g, "°")
+          .replace(/\\sqrt\{\}?3/g, "√3")
+          .replace(/\\sqrt3/g, "√3")
+          .replace(/cos~\\phi/g, "cos φ")
+          .replace(/sino/g, "sin φ")
+          .replace(/sind/g, "sin φ")
+          .replace(/V_\{ph\}/g, "V<sub>ph</sub>")
+          .replace(/V_\{L\}/g, "V<sub>L</sub>")
+          .replace(/I_\{ph\}/g, "I<sub>ph</sub>")
+          .replace(/I_\{L\}/g, "I<sub>L</sub>")
+          .replace(/\\phi/g, "φ")
+          .replace(/\\pi/g, "π")
+          .replace(/N_\{1\}/g, "N<sub>1</sub>")
+          .replace(/N_\{2\}/g, "N<sub>2</sub>")
+          .replace(/V_\{A\}/g, "V<sub>A</sub>")
+          .replace(/V_\{B\}/g, "V<sub>B</sub>")
+          .replace(/V_\{c\}/g, "V<sub>C</sub>")
+          .replace(/I_\{o\}/g, "I<sub>o</sub>")
+          .replace(/_\{a\}/g, "<sub>a</sub>")
+          .replace(/_\{f\}/g, "<sub>f</sub>");
+      };
 
-        const parseQuiz = (text) => {
-            const lines = text.split('\n');
-            const questions = [];
-            let currentQ = null;
+      const parseQuiz = (text) => {
+        const lines = text.split("\n");
+        const questions = [];
+        let currentQ = null;
 
-            const qRegex = /^(\d+)\.\s*(.*)/;
-            const optRegex = /^([a-d])\)\s*(.*)/i;
+        const qRegex = /^(\d+)\.\s*(.*)/;
+        const optRegex = /^([a-d])\)\s*(.*)/i;
 
-            for (let i = 0; i < lines.length; i++) {
-                let line = lines[i].trim();
-                // Filter noise
-                if (!line || line.startsWith('---') || line.includes('MANSOURA UNIVERSITY') || line.includes('MCQ Question bank') || line.includes('لية الهندسة')) continue;
+        for (let i = 0; i < lines.length; i++) {
+          let line = lines[i].trim();
+          // Filter noise
+          if (
+            !line ||
+            line.startsWith("---") ||
+            line.includes("MANSOURA UNIVERSITY") ||
+            line.includes("MCQ Question bank") ||
+            line.includes("لية الهندسة")
+          )
+            continue;
 
-                let qMatch = line.match(qRegex);
-                if (qMatch) {
-                    if (currentQ) questions.push(currentQ);
-                    currentQ = {
-                        id: questions.length + 1,
-                        originalNum: qMatch[1],
-                        text: qMatch[2] || '',
-                        options: [],
-                        answer: providedAnswers[questions.length] || 'a' // Match sequence
-                    };
-                    continue;
-                }
-
-                if (currentQ) {
-                    let optMatch = line.match(optRegex);
-                    if (optMatch) {
-                        currentQ.options.push({
-                            letter: optMatch[1].toLowerCase(),
-                            text: optMatch[2] || ''
-                        });
-                    } else if (currentQ.options.length === 0) {
-                        currentQ.text += (currentQ.text ? ' ' : '') + line;
-                    } else {
-                        // Handle multiline options or ignore subheaders
-                        if (currentQ.options.length < 4) {
-                            let lastOpt = currentQ.options[currentQ.options.length - 1];
-                            lastOpt.text += (lastOpt.text ? ' ' : '') + line;
-                        }
-                    }
-                }
-            }
+          let qMatch = line.match(qRegex);
+          if (qMatch) {
             if (currentQ) questions.push(currentQ);
-            
-            // Clean up Math in parsed elements
-            return questions.map(q => ({
-                ...q,
-                text: cleanMath(q.text),
-                options: q.options.map(opt => ({...opt, text: cleanMath(opt.text)}))
-            }));
+            currentQ = {
+              id: questions.length + 1,
+              originalNum: qMatch[1],
+              text: qMatch[2] || "",
+              options: [],
+              answer: providedAnswers[questions.length] || "a", // Match sequence
+            };
+            continue;
+          }
+
+          if (currentQ) {
+            let optMatch = line.match(optRegex);
+            if (optMatch) {
+              currentQ.options.push({
+                letter: optMatch[1].toLowerCase(),
+                text: optMatch[2] || "",
+              });
+            } else if (currentQ.options.length === 0) {
+              currentQ.text += (currentQ.text ? " " : "") + line;
+            } else {
+              // Handle multiline options or ignore subheaders
+              if (currentQ.options.length < 4) {
+                let lastOpt = currentQ.options[currentQ.options.length - 1];
+                lastOpt.text += (lastOpt.text ? " " : "") + line;
+              }
+            }
+          }
+        }
+        if (currentQ) questions.push(currentQ);
+
+        // Clean up Math in parsed elements
+        return questions.map((q) => ({
+          ...q,
+          text: cleanMath(q.text),
+          options: q.options.map((opt) => ({
+            ...opt,
+            text: cleanMath(opt.text),
+          })),
+        }));
+      };
+
+      const parsedQuestions = parseQuiz(rawPdfText);
+
+      const QuizApp = () => {
+        const [hasStarted, setHasStarted] = React.useState(false);
+        const [currentIndex, setCurrentIndex] = React.useState(0);
+        const [userAnswers, setUserAnswers] = React.useState({});
+        const [showResults, setShowResults] = React.useState(false);
+
+        const currentQ = parsedQuestions[currentIndex];
+
+        const handleStart = () => setHasStarted(true);
+
+        const handleOptionClick = (letter) => {
+          // Prevent answering again once a choice is made for this question
+          if (userAnswers[currentIndex]) return;
+
+          setUserAnswers((prev) => ({ ...prev, [currentIndex]: letter }));
+          // Removed auto-advance so the user can see the correct/incorrect feedback
         };
 
-        const parsedQuestions = parseQuiz(rawPdfText);
+        const calculateScore = () => {
+          let correct = 0;
+          parsedQuestions.forEach((q, idx) => {
+            if (userAnswers[idx] === q.answer) correct++;
+          });
+          return correct;
+        };
 
-        const QuizApp = () => {
-            const [hasStarted, setHasStarted] = React.useState(false);
-            const [currentIndex, setCurrentIndex] = React.useState(0);
-            const [userAnswers, setUserAnswers] = React.useState({});
-            const [showResults, setShowResults] = React.useState(false);
+        const restart = () => {
+          setHasStarted(false);
+          setCurrentIndex(0);
+          setUserAnswers({});
+          setShowResults(false);
+        };
 
-            const currentQ = parsedQuestions[currentIndex];
-
-            const handleStart = () => setHasStarted(true);
-
-            const handleOptionClick = (letter) => {
-                setUserAnswers(prev => ({ ...prev, [currentIndex]: letter }));
-                setTimeout(() => {
-                    if (currentIndex < parsedQuestions.length - 1) {
-                        setCurrentIndex(prev => prev + 1);
-                    } else {
-                        setShowResults(true);
-                    }
-                }, 300);
-            };
-
-            const calculateScore = () => {
-                let correct = 0;
-                parsedQuestions.forEach((q, idx) => {
-                    if (userAnswers[idx] === q.answer) correct++;
-                });
-                return correct;
-            };
-
-            const restart = () => {
-                setHasStarted(false);
-                setCurrentIndex(0);
-                setUserAnswers({});
-                setShowResults(false);
-            };
-
-            if (!hasStarted) {
-                return (
-                    <div className="min-h-screen flex items-center justify-center p-4">
-                        <div className="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 text-center space-y-6">
-                            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                </svg>
-                            </div>
-                            <h1 className="text-3xl font-bold text-gray-800">Electric Power & Machines</h1>
-                            <p className="text-gray-500">Test your knowledge with {parsedQuestions.length} comprehensive questions straight from the source material.</p>
-                            <button 
-                                onClick={handleStart}
-                                className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-4 px-6 rounded-xl transition-colors text-lg"
-                            >
-                                Start Quiz
-                            </button>
-                        </div>
-                    </div>
-                );
-            }
-
-            if (showResults) {
-                const score = calculateScore();
-                const percentage = Math.round((score / parsedQuestions.length) * 100);
-                return (
-                    <div className="min-h-screen py-10 px-4">
-                        <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
-                            <div className="bg-green-600 p-8 text-center text-white">
-                                <h2 className="text-3xl font-bold mb-2">Quiz Complete!</h2>
-                                <div className="text-5xl font-black mb-4">{percentage}%</div>
-                                <p className="text-green-100 text-lg">You scored {score} out of {parsedQuestions.length}</p>
-                            </div>
-                            
-                            <div className="p-6 md:p-8 space-y-8">
-                                <div className="flex justify-between items-center mb-6">
-                                    <h3 className="text-2xl font-bold text-gray-800">Review Answers</h3>
-                                    <button onClick={restart} className="flex items-center space-x-2 text-green-600 hover:text-green-700 font-medium">
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
-                                        <span>Restart</span>
-                                    </button>
-                                </div>
-                                
-                                {parsedQuestions.map((q, idx) => {
-                                    const isCorrect = userAnswers[idx] === q.answer;
-                                    const answered = userAnswers[idx];
-                                    
-                                    return (
-                                        <div key={idx} className={`p-4 rounded-xl border-l-4 ${isCorrect ? 'bg-green-50 border-green-500' : 'bg-red-50 border-red-500'}`}>
-                                            <p className="font-semibold text-gray-800 mb-3" dangerouslySetInnerHTML={{ __html: `${q.originalNum}. ${q.text}` }}></p>
-                                            <div className="space-y-2">
-                                                {q.options.map(opt => {
-                                                    const isUserChoice = answered === opt.letter;
-                                                    const isActualAnswer = q.answer === opt.letter;
-                                                    
-                                                    let highlightClass = "text-gray-500";
-                                                    if (isActualAnswer) highlightClass = "text-green-700 font-bold flex items-center";
-                                                    else if (isUserChoice && !isCorrect) highlightClass = "text-red-600 line-through flex items-center";
-                                                    
-                                                    return (
-                                                        <div key={opt.letter} className={highlightClass}>
-                                                            <span className="w-6 inline-block">{opt.letter})</span> 
-                                                            <span dangerouslySetInnerHTML={{ __html: opt.text }}></span>
-                                                            {isActualAnswer && <svg className="w-5 h-5 ml-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>}
-                                                            {isUserChoice && !isCorrect && <svg className="w-5 h-5 ml-2 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>}
-                                                        </div>
-                                                    )
-                                                })}
-                                            </div>
-                                        </div>
-                                    )
-                                })}
-                            </div>
-                        </div>
-                    </div>
-                );
-            }
-
-            return (
-                <div className="min-h-screen flex flex-col p-4 md:p-8">
-                    <div className="max-w-2xl w-full mx-auto flex-1 flex flex-col">
-                        {/* Header / Progress */}
-                        <div className="mb-8">
-                            <div className="flex justify-between items-end mb-2">
-                                <span className="text-sm font-semibold text-gray-500 uppercase tracking-wider">Question {currentIndex + 1} of {parsedQuestions.length}</span>
-                                <button onClick={() => setShowResults(true)} className="text-sm text-green-600 hover:underline">Finish Early</button>
-                            </div>
-                            <div className="w-full bg-gray-200 rounded-full h-2.5">
-                                <div className="bg-green-600 h-2.5 rounded-full transition-all duration-300" style={{ width: `${((currentIndex + 1) / parsedQuestions.length) * 100}%` }}></div>
-                            </div>
-                        </div>
-
-                        {/* Question Card */}
-                        <div className="bg-white rounded-2xl shadow-xl p-6 md:p-10 flex-1">
-                            <h2 className="text-2xl font-semibold text-gray-800 mb-8" dangerouslySetInnerHTML={{ __html: `${currentQ.originalNum}. ${currentQ.text}` }}></h2>
-                            
-                            <div className="space-y-4">
-                                {currentQ.options.map(opt => {
-                                    const isSelected = userAnswers[currentIndex] === opt.letter;
-                                    return (
-                                        <button 
-                                            key={opt.letter}
-                                            onClick={() => handleOptionClick(opt.letter)}
-                                            className={`w-full text-left p-5 rounded-xl border-2 transition-all duration-200 flex items-center group
-                                                ${isSelected ? 'border-green-500 bg-green-50' : 'border-gray-100 hover:border-green-200 hover:bg-gray-50'}`}
-                                        >
-                                            <span className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold mr-4 shrink-0 transition-colors
-                                                ${isSelected ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-600 group-hover:bg-green-100 group-hover:text-green-700'}`}>
-                                                {opt.letter.toUpperCase()}
-                                            </span>
-                                            <span className={`text-lg ${isSelected ? 'text-gray-900 font-medium' : 'text-gray-700'}`} dangerouslySetInnerHTML={{ __html: opt.text }}></span>
-                                        </button>
-                                    )
-                                })}
-                            </div>
-                        </div>
-
-                        {/* Controls */}
-                        <div className="flex justify-between items-center mt-6">
-                            <button 
-                                onClick={() => setCurrentIndex(prev => Math.max(0, prev - 1))}
-                                disabled={currentIndex === 0}
-                                className="px-6 py-3 font-medium text-gray-600 hover:bg-white hover:shadow-sm rounded-xl disabled:opacity-50 transition-all"
-                            >
-                                ← Previous
-                            </button>
-                            {userAnswers[currentIndex] && (
-                                <button 
-                                    onClick={() => {
-                                        if (currentIndex < parsedQuestions.length - 1) setCurrentIndex(prev => prev + 1);
-                                        else setShowResults(true);
-                                    }}
-                                    className="px-6 py-3 font-medium bg-green-600 hover:bg-green-700 text-white shadow-md rounded-xl transition-all"
-                                >
-                                    {currentIndex === parsedQuestions.length - 1 ? 'See Results' : 'Next →'}
-                                </button>
-                            )}
-                        </div>
-                    </div>
+        if (!hasStarted) {
+          return (
+            <div className="min-h-screen flex items-center justify-center p-4">
+              <div className="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 text-center space-y-6">
+                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg
+                    className="w-10 h-10 text-green-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
                 </div>
-            );
-        };
+                <h1 className="text-3xl font-bold text-gray-800">
+                  Electric Power & Machines
+                </h1>
+                <p className="text-gray-500">
+                  Test your knowledge with {parsedQuestions.length}{" "}
+                  comprehensive questions straight from the source material.
+                </p>
+                <button
+                  onClick={handleStart}
+                  className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-4 px-6 rounded-xl transition-colors text-lg"
+                >
+                  Start Quiz
+                </button>
+              </div>
+            </div>
+          );
+        }
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<QuizApp />);
+        if (showResults) {
+          const score = calculateScore();
+          const percentage = Math.round((score / parsedQuestions.length) * 100);
+          return (
+            <div className="min-h-screen py-10 px-4">
+              <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div className="bg-green-600 p-8 text-center text-white">
+                  <h2 className="text-3xl font-bold mb-2">Quiz Complete!</h2>
+                  <div className="text-5xl font-black mb-4">{percentage}%</div>
+                  <p className="text-green-100 text-lg">
+                    You scored {score} out of {parsedQuestions.length}
+                  </p>
+                </div>
+
+                <div className="p-6 md:p-8 space-y-8">
+                  <div className="flex justify-between items-center mb-6">
+                    <h3 className="text-2xl font-bold text-gray-800">
+                      Review Answers
+                    </h3>
+                    <button
+                      onClick={restart}
+                      className="flex items-center space-x-2 text-green-600 hover:text-green-700 font-medium"
+                    >
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                        />
+                      </svg>
+                      <span>Restart</span>
+                    </button>
+                  </div>
+
+                  {parsedQuestions.map((q, idx) => {
+                    const isCorrect = userAnswers[idx] === q.answer;
+                    const answered = userAnswers[idx];
+
+                    return (
+                      <div
+                        key={idx}
+                        className={`p-4 rounded-xl border-l-4 ${isCorrect ? "bg-green-50 border-green-500" : "bg-red-50 border-red-500"}`}
+                      >
+                        <p
+                          className="font-semibold text-gray-800 mb-3"
+                          dangerouslySetInnerHTML={{
+                            __html: `${q.originalNum}. ${q.text}`,
+                          }}
+                        ></p>
+                        <div className="space-y-2">
+                          {q.options.map((opt) => {
+                            const isUserChoice = answered === opt.letter;
+                            const isActualAnswer = q.answer === opt.letter;
+
+                            let highlightClass = "text-gray-500";
+                            if (isActualAnswer)
+                              highlightClass =
+                                "text-green-700 font-bold flex items-center";
+                            else if (isUserChoice && !isCorrect)
+                              highlightClass =
+                                "text-red-600 line-through flex items-center";
+
+                            return (
+                              <div key={opt.letter} className={highlightClass}>
+                                <span className="w-6 inline-block">
+                                  {opt.letter})
+                                </span>
+                                <span
+                                  dangerouslySetInnerHTML={{ __html: opt.text }}
+                                ></span>
+                                {isActualAnswer && (
+                                  <svg
+                                    className="w-5 h-5 ml-2 text-green-600"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth="2"
+                                      d="M5 13l4 4L19 7"
+                                    />
+                                  </svg>
+                                )}
+                                {isUserChoice && !isCorrect && (
+                                  <svg
+                                    className="w-5 h-5 ml-2 text-red-600"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth="2"
+                                      d="M6 18L18 6M6 6l12 12"
+                                    />
+                                  </svg>
+                                )}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          );
+        }
+
+        return (
+          <div className="min-h-screen flex flex-col p-4 md:p-8">
+            <div className="max-w-2xl w-full mx-auto flex-1 flex flex-col">
+              {/* Header / Progress */}
+              <div className="mb-8">
+                <div className="flex justify-between items-end mb-2">
+                  <span className="text-sm font-semibold text-gray-500 uppercase tracking-wider">
+                    Question {currentIndex + 1} of {parsedQuestions.length}
+                  </span>
+                  <button
+                    onClick={() => setShowResults(true)}
+                    className="text-sm text-green-600 hover:underline"
+                  >
+                    Finish Early
+                  </button>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2.5">
+                  <div
+                    className="bg-green-600 h-2.5 rounded-full transition-all duration-300"
+                    style={{
+                      width: `${((currentIndex + 1) / parsedQuestions.length) * 100}%`,
+                    }}
+                  ></div>
+                </div>
+              </div>
+
+              {/* Question Card */}
+              <div className="bg-white rounded-2xl shadow-xl p-6 md:p-10 flex-1">
+                <h2
+                  className="text-2xl font-semibold text-gray-800 mb-8"
+                  dangerouslySetInnerHTML={{
+                    __html: `${currentQ.originalNum}. ${currentQ.text}`,
+                  }}
+                ></h2>
+
+                <div className="space-y-4">
+                  {currentQ.options.map((opt) => {
+                    const hasAnswered = !!userAnswers[currentIndex];
+                    const isSelected = userAnswers[currentIndex] === opt.letter;
+                    const isCorrect = currentQ.answer === opt.letter;
+
+                    let btnClass =
+                      "w-full text-left p-5 rounded-xl border-2 transition-all duration-200 flex items-center justify-between group ";
+                    let iconBg = "bg-gray-100 text-gray-600 ";
+                    let textClass = "text-lg text-gray-700 ";
+
+                    if (!hasAnswered) {
+                      // Default active styling before answering
+                      btnClass +=
+                        "border-gray-100 hover:border-green-200 hover:bg-gray-50 cursor-pointer";
+                      iconBg +=
+                        "group-hover:bg-green-100 group-hover:text-green-700";
+                    } else {
+                      // Styling after an answer is submitted
+                      btnClass += " cursor-default";
+                      if (isCorrect) {
+                        btnClass += " border-green-500 bg-green-50";
+                        iconBg = "bg-green-500 text-white";
+                        textClass = "text-green-800 font-medium";
+                      } else if (isSelected) {
+                        btnClass += " border-red-500 bg-red-50";
+                        iconBg = "bg-red-500 text-white";
+                        textClass =
+                          "text-red-800 font-medium line-through opacity-80";
+                      } else {
+                        btnClass += " border-gray-100 bg-white opacity-50";
+                      }
+                    }
+
+                    return (
+                      <button
+                        key={opt.letter}
+                        onClick={() => handleOptionClick(opt.letter)}
+                        disabled={hasAnswered}
+                        className={btnClass}
+                      >
+                        <div className="flex items-center">
+                          <span
+                            className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold mr-4 shrink-0 transition-colors ${iconBg}`}
+                          >
+                            {opt.letter.toUpperCase()}
+                          </span>
+                          <span
+                            className={textClass}
+                            dangerouslySetInnerHTML={{ __html: opt.text }}
+                          ></span>
+                        </div>
+                        {/* Show checkmark for correct answer or X for incorrect user choice */}
+                        {hasAnswered && isCorrect && (
+                          <svg
+                            className="w-6 h-6 text-green-600"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="3"
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                        )}
+                        {hasAnswered && isSelected && !isCorrect && (
+                          <svg
+                            className="w-6 h-6 text-red-600"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="3"
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          </svg>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Controls */}
+              <div className="flex justify-between items-center mt-6">
+                <button
+                  onClick={() =>
+                    setCurrentIndex((prev) => Math.max(0, prev - 1))
+                  }
+                  disabled={currentIndex === 0}
+                  className="px-6 py-3 font-medium text-gray-600 hover:bg-white hover:shadow-sm rounded-xl disabled:opacity-50 transition-all"
+                >
+                  ← Previous
+                </button>
+                {userAnswers[currentIndex] && (
+                  <button
+                    onClick={() => {
+                      if (currentIndex < parsedQuestions.length - 1)
+                        setCurrentIndex((prev) => prev + 1);
+                      else setShowResults(true);
+                    }}
+                    className="px-6 py-3 font-medium bg-green-600 hover:bg-green-700 text-white shadow-md rounded-xl transition-all"
+                  >
+                    {currentIndex === parsedQuestions.length - 1
+                      ? "See Results"
+                      : "Next →"}
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<QuizApp />);
     </script>
-</body>
+  </body>
 </html>
